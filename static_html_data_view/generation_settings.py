@@ -74,7 +74,7 @@ def get_generation_settings(options, args, error_fcn):
         )
 
     special_template_files = {}
-    for filename, (required, loader) in SPECIAL_TEMPLATE_FILES.iteritems():
+    for filename, (required, loader) in SPECIAL_TEMPLATE_FILES.items():
         if os.path.isfile(os.path.join(template_dir, filename)):
             if loader:
                 with open(os.path.join(template_dir, filename)) as f:

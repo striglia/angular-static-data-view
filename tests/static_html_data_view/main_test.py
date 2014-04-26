@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """Tests for the main methods, including some smoke/integration tests."""
-import cStringIO
+try:
+    import cStringIO as string_io
+except:
+    import io as string_io
 import fileinput
 import os.path
 
@@ -30,7 +33,7 @@ def test_generation(write_file_mock, shutil_mock, fileinput_mock):
     """
     The closest thing to a unit test right now.
     """
-    main.main(['basic', '-b'])
+    main.main(['basic', '-b', '--single-json-blob'])
     written_files = dict(
         (os.path.basename(filename), writer)
         for ((filename, writer), _) in write_file_mock.call_args_list
@@ -42,7 +45,7 @@ def test_generation(write_file_mock, shutil_mock, fileinput_mock):
     )
 
     # hacky stuff to make sure data.json is written correctly
-    stringio = cStringIO.StringIO()
+    stringio = string_io.StringIO()
     written_files['data.json'](stringio)
     data_reread = simplejson.loads(stringio.getvalue())
-    assert data_reread == [33]
+    assert data_reread == 33
