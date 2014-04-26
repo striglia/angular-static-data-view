@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/gatoatigrado/angular-static-data-view.png)](https://travis-ci.org/angular-static-data-view/vimap)
+
 angular-static-data-view
 ========================
 
